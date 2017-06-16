@@ -1,0 +1,22 @@
+[parity]
+chain = "/etc/parityPoA/PoA.json"
+
+[account]
+unlock = ["AUTHORITY_ADDRESS"]
+password = ["/run/secrets/authority.AUTHORITY_COMPANY.password"]
+
+[mining]
+engine_signer = "AUTHORITY_ADDRESS"
+reseal_on_txs = "none"
+usd_per_tx = "0"
+
+[ui]
+force = true
+interface = "0.0.0.0"
+
+[rpc]
+cors = "http://localhost:3000"
+# Only selected APIs will be exposed over this interface.
+apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
+interface = "0.0.0.0"
+hosts = ["all"]

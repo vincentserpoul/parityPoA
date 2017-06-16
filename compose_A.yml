@@ -1,0 +1,42 @@
+version: "3.1"
+
+services:
+  A:
+    image: vincentserpoul/paritypoa:v1.6.8
+    ports:
+      - "8180:8180"
+      - "8545:8545"
+      - "30303:30303"
+    environment:
+      - UI_PORT=8180
+      - JSONRPC_PORT=8545
+      - NETWORK_PORT=30303
+      - AUTHORITY_COMPANY=A
+    secrets:
+      - authority.A.address
+      - authority.A.passphrase
+      - authority.A.password
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [NODE=A]
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 1
+        window: 120s
+      # service update configuration
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: continue
+        monitor: 60s
+        max_failure_ratio: 0.3
+
+secrets:
+  authority.A.address:
+    external: true
+  authority.A.passphrase:
+    external: true
+  authority.A.password:
+    external: true
