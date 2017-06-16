@@ -41,6 +41,15 @@ cd dockerimage
 ./launch_docker_stack.sh
 ```
 
+Add the user1:
+
+```
+curl -X POST --data '{"method":"parity_newAccountFromPhrase","params":["PoA user, first of all, with a lot of eth","1234567890"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" localhost:8545
+
+>> 0x009b98e786952f3ace412961b6008a34b059ff74
+```
+
+
 # Access to UI
 
 ```
