@@ -1,7 +1,7 @@
 FROM parity/parity:v1.6.8
 MAINTAINER Vincent Serpoul <vincent@serpoul.com>
 
-EXPOSE 8180 8545 30303
+EXPOSE 8080 8180 8545 30303
 
 # Install curl
 RUN apt-get update && apt-get install curl -y

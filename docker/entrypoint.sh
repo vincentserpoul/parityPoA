@@ -18,4 +18,5 @@ sed -i 's/AUTHORITY_COMPANY/'$AUTHORITY_COMPANY'/' /etc/parityPoA/configPoANode.
 /parity/parity --config /etc/parityPoA/configPoANode.toml \
     --ui-port=$UI_PORT \
     --jsonrpc-port=$JSONRPC_PORT \
-    --port=$NETWORK_PORT
+    --port=$NETWORK_PORT \
+    --dapps-port=$DAPPS_PORT
