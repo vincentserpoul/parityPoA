@@ -2,7 +2,7 @@
 chain = "/etc/parityPoA/PoA.json"
 
 [rpc]
-cors = "http://localhost:3000"
+cors = "http://127.0.0.1:3000"
 # Only selected APIs will be exposed over this interface.
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 interface = "127.0.0.1"
