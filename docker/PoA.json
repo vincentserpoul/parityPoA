@@ -16,7 +16,7 @@
     },
     "params": {
         "maximumExtraDataSize": "0x20",
-        "minGasLimit": "0x1388",
+        "minGasLimit": "0x5F5E100",
         "networkID": "0x2323"
     },
     "genesis": {
@@ -27,7 +27,7 @@
             }
         },
         "difficulty": "0x20000",
-        "gasLimit": "0x5B8D80"
+        "gasLimit": "0x5F5E100"
     },
     "accounts": {
         "0x0000000000000000000000000000000000000001": {
@@ -77,9 +77,6 @@
                     }
                 }
             }
-        },
-        "0x009b98e786952f3ace412961b6008a34b059ff74": {
-            "balance": "10000000000000000000000000000000000"
         }
     }
 }

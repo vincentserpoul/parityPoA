@@ -19,4 +19,5 @@ sed -i 's/AUTHORITY_COMPANY/'$AUTHORITY_COMPANY'/' /etc/parityPoA/configPoANode.
     --ui-port=$UI_PORT \
     --jsonrpc-port=$JSONRPC_PORT \
     --port=$NETWORK_PORT \
-    --dapps-port=$DAPPS_PORT
+    --dapps-port=$DAPPS_PORT \
+    --gasprice 0
