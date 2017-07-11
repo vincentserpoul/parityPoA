@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.3"
 
 services:
   B:
@@ -14,6 +14,8 @@ services:
       - NETWORK_PORT=30304
       - DAPPS_PORT=8081
       - AUTHORITY_COMPANY=B
+    volumes:
+      - chaindata:/mnt/io.parity.ethereum
     secrets:
       - authority.B.address
       - authority.B.passphrase
@@ -34,6 +36,9 @@ services:
         failure_action: continue
         monitor: 60s
         max_failure_ratio: 0.3
+
+volumes:
+  chaindata:
 
 networks:
   default:

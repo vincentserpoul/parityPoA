@@ -1,5 +1,6 @@
 [parity]
 chain = "/etc/parityPoA/PoA.json"
+base_path = "/mnt/io.parity.ethereum"
 
 [account]
 unlock = ["AUTHORITY_ADDRESS"]
@@ -12,11 +13,11 @@ usd_per_tx = "0"
 
 [ui]
 force = true
-interface = "0.0.0.0"
+interface = "127.0.0.1"
 
 [rpc]
-cors = "http://localhost:3000"
+cors = "null"
 # Only selected APIs will be exposed over this interface.
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
-interface = "0.0.0.0"
+interface = "127.0.0.1"
 hosts = ["all"]
