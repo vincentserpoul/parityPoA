@@ -15,7 +15,7 @@ services:
       - DAPPS_PORT=8080
       - AUTHORITY_COMPANY=A
     volumes:
-      - chaindata:/mnt/io.parity.ethereum
+      - chaindata_A:/mnt/io.parity.ethereum
     secrets:
       - authority.A.address
       - authority.A.passphrase
@@ -38,7 +38,7 @@ services:
         max_failure_ratio: 0.3
 
 volumes:
-  chaindata:
+  chaindata_A:
 
 secrets:
   authority.A.address:
