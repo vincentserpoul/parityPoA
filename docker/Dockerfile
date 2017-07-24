@@ -1,4 +1,4 @@
-FROM parity/parity:v1.6.9
+FROM parity/parity:v1.6.10
 MAINTAINER Vincent Serpoul <vincent@serpoul.com>
 
 EXPOSE 8080 8180 8545 30303

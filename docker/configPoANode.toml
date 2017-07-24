@@ -13,11 +13,11 @@ usd_per_tx = "0"
 
 [ui]
 force = true
-interface = "127.0.0.1"
+interface = "0.0.0.0"
 
 [rpc]
 cors = "null"
 # Only selected APIs will be exposed over this interface.
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
-interface = "127.0.0.1"
+interface = "0.0.0.0"
 hosts = ["all"]
