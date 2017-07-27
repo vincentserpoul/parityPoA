@@ -17,4 +17,7 @@ ADD ./configPoANode.toml /etc/parityPoA/configPoANode.toml
 ADD ./PoA.json /etc/parityPoA/PoA.json
 ADD ./entrypoint.sh /entrypoint.sh
 
+# For the signer
+RUN mkdir -p ~/.local/share/io.parity.ethereum/signer
+
 ENTRYPOINT ["/entrypoint.sh"]
