@@ -2,17 +2,16 @@ version: "3.3"
 
 services:
   B:
-    image: vincentserpoul/paritypoa:v1.6.10
+    image: vincentserpoul/paritypoa:v1.7.0
     ports:
       - "8081:8081"
       - "8181:8181"
-      - "8546:8546"
+      - "8547:8547"
       - "30304:30304"
     environment:
       - UI_PORT=8181
-      - JSONRPC_PORT=8546
+      - JSONRPC_PORT=8547
       - NETWORK_PORT=30304
-      - DAPPS_PORT=8081
       - AUTHORITY_COMPANY=B
     volumes:
       - chaindata_B:/mnt/io.parity.ethereum

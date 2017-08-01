@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   A:
-    image: vincentserpoul/paritypoa:v1.6.10
+    image: vincentserpoul/paritypoa:v1.7.0
     ports:
       - "8080:8080"
       - "8180:8180"
@@ -12,7 +12,6 @@ services:
       - UI_PORT=8180
       - JSONRPC_PORT=8545
       - NETWORK_PORT=30303
-      - DAPPS_PORT=8080
       - AUTHORITY_COMPANY=A
     volumes:
       - chaindata_A:/mnt/io.parity.ethereum
