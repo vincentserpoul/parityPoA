@@ -15,6 +15,11 @@ usd_per_tx = "0"
 force = true
 interface = "0.0.0.0"
 
+[websockets]
+interface = "0.0.0.0"
+hosts = ["all"]
+origins = ["all"]
+
 [rpc]
 cors = "null"
 # Only selected APIs will be exposed over this interface.

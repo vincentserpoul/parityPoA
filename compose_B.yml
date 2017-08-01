@@ -7,10 +7,12 @@ services:
       - "8081:8081"
       - "8181:8181"
       - "8547:8547"
+      - "8548:8548"
       - "30304:30304"
     environment:
       - UI_PORT=8181
       - JSONRPC_PORT=8547
+      - WEBSOCKETS_PORT=8548
       - NETWORK_PORT=30304
       - AUTHORITY_COMPANY=B
     volumes:

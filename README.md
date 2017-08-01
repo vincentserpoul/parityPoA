@@ -80,7 +80,7 @@ docker service inspect poa_A -f '{{index .Endpoint.VirtualIPs 1}}'
 You need to use the address 10.0.1.2 when you add the peer to the B peer
 
 ```
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://x@10.0.1.2:30303"],"id":0}' -H "Content-Type: application/json" 0.0.0.0:8547
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://x@10.0.0.2:30303"],"id":0}' -H "Content-Type: application/json" 0.0.0.0:8547
 
 >> {"jsonrpc":"2.0","result":true,"id":0}
 ```

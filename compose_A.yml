@@ -7,10 +7,12 @@ services:
       - "8080:8080"
       - "8180:8180"
       - "8545:8545"
+      - "8546:8546"
       - "30303:30303"
     environment:
       - UI_PORT=8180
       - JSONRPC_PORT=8545
+      - WEBSOCKETS_PORT=8546
       - NETWORK_PORT=30303
       - AUTHORITY_COMPANY=A
     volumes:
