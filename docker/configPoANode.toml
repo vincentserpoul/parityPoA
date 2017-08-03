@@ -18,7 +18,8 @@ interface = "0.0.0.0"
 [websockets]
 interface = "0.0.0.0"
 hosts = ["all"]
-origins = ["all"]
+origins = ["127.0.0.1:3000"]
+apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 
 [rpc]
 cors = "127.0.0.1:3000"
