@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   B:
-    image: vincentserpoul/paritypoa:v1.7.0
+    image: vincentserpoul/paritypoa:v1.8.1
     ports:
       - "8081:8081"
       - "8181:8181"
@@ -16,7 +16,7 @@ services:
       - NETWORK_PORT=30304
       - AUTHORITY_COMPANY=B
     volumes:
-      - chaindata_B:/mnt/io.parity.ethereum
+      - chain_B:/mnt/io.parity.ethereum
     secrets:
       - authority.B.address
       - authority.B.passphrase
@@ -39,7 +39,7 @@ services:
         max_failure_ratio: 0.3
 
 volumes:
-  chaindata_B:
+  chain_B:
 
 networks:
   default:

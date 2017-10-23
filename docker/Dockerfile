@@ -1,5 +1,5 @@
-FROM parity/parity:v1.7.0
-MAINTAINER Vincent Serpoul <vincent@serpoul.com>
+FROM parity/parity:v1.8.1
+LABEL maintainer="vincent@serpoul.com"
 
 EXPOSE 8080 8180 8545 8546 30303
 

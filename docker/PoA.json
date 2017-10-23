@@ -1,82 +1,84 @@
 {
-    "name": "PoA",
-    "engine": {
-        "authorityRound": {
-            "params": {
-                "gasLimitBoundDivisor": "0x400",
-                "stepDuration": "2",
-                "validators": {
-                    "list": [
-                        "0x0097c0cfe63b641f9fb034f7bd8ecb99f2dabaf3",
-                        "0x008549c7265000f5c06413c451d529870cf75d35"
-                    ]
-                }
-            }
+  "name": "PoA",
+  "engine": {
+    "authorityRound": {
+      "params": {
+        "gasLimitBoundDivisor": "0x400",
+        "stepDuration": "2",
+        "validators": {
+          "list": [
+            "0x0097c0cfe63b641f9fb034f7bd8ecb99f2dabaf3",
+            "0x008549c7265000f5c06413c451d529870cf75d35"
+          ]
         }
-    },
-    "params": {
-        "maximumExtraDataSize": "0x20",
-        "minGasLimit": "0x5F5E100",
-        "networkID": "0x2323"
-    },
-    "genesis": {
-        "seal": {
-            "authorityRound": {
-                "step": "0x0",
-                "signature": "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-            }
-        },
-        "difficulty": "0x20000",
-        "gasLimit": "0x5F5E100"
-    },
-    "accounts": {
-        "0x0000000000000000000000000000000000000001": {
-            "balance": "1",
-            "builtin": {
-                "name": "ecrecover",
-                "pricing": {
-                    "linear": {
-                        "base": 3000,
-                        "word": 0
-                    }
-                }
-            }
-        },
-        "0x0000000000000000000000000000000000000002": {
-            "balance": "1",
-            "builtin": {
-                "name": "sha256",
-                "pricing": {
-                    "linear": {
-                        "base": 60,
-                        "word": 12
-                    }
-                }
-            }
-        },
-        "0x0000000000000000000000000000000000000003": {
-            "balance": "1",
-            "builtin": {
-                "name": "ripemd160",
-                "pricing": {
-                    "linear": {
-                        "base": 600,
-                        "word": 120
-                    }
-                }
-            }
-        },
-        "0x0000000000000000000000000000000000000004": {
-            "balance": "1",
-            "builtin": {
-                "name": "identity",
-                "pricing": {
-                    "linear": {
-                        "base": 15,
-                        "word": 3
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "params": {
+    "gasLimitBoundDivisor": "0x400",
+    "maximumExtraDataSize": "0x20",
+    "minGasLimit": "0x5F5E100",
+    "networkID": "0x2323"
+  },
+  "genesis": {
+    "seal": {
+      "authorityRound": {
+        "step": "0x0",
+        "signature":
+          "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "difficulty": "0x20000",
+    "gasLimit": "0x5F5E100"
+  },
+  "accounts": {
+    "0x0000000000000000000000000000000000000001": {
+      "balance": "1",
+      "builtin": {
+        "name": "ecrecover",
+        "pricing": {
+          "linear": {
+            "base": 3000,
+            "word": 0
+          }
+        }
+      }
+    },
+    "0x0000000000000000000000000000000000000002": {
+      "balance": "1",
+      "builtin": {
+        "name": "sha256",
+        "pricing": {
+          "linear": {
+            "base": 60,
+            "word": 12
+          }
+        }
+      }
+    },
+    "0x0000000000000000000000000000000000000003": {
+      "balance": "1",
+      "builtin": {
+        "name": "ripemd160",
+        "pricing": {
+          "linear": {
+            "base": 600,
+            "word": 120
+          }
+        }
+      }
+    },
+    "0x0000000000000000000000000000000000000004": {
+      "balance": "1",
+      "builtin": {
+        "name": "identity",
+        "pricing": {
+          "linear": {
+            "base": 15,
+            "word": 3
+          }
+        }
+      }
+    }
+  }
 }
