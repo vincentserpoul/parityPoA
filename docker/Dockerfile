@@ -1,7 +1,7 @@
-FROM parity/parity:v1.8.1
+FROM parity/parity:v1.8.3
 LABEL maintainer="vincent@serpoul.com"
 
-EXPOSE 8080 8180 8545 8546 30303
+EXPOSE 8080 8180 8545 8546 8547 8548 30303
 
 # Install curl
 RUN apt-get update && apt-get install curl -y

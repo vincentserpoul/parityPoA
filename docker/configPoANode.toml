@@ -14,15 +14,16 @@ usd_per_tx = "0"
 [ui]
 force = true
 interface = "0.0.0.0"
+hosts = ["all"]
 
 [websockets]
 interface = "0.0.0.0"
 hosts = ["all"]
-origins = ["127.0.0.1:8180", "127.0.0.1:8181", "127.0.0.1:3000"]
+origins = ["127.0.0.1:8180", "127.0.0.1:8181", "localhost:3000", "chrome-extension://*"]
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 
 [rpc]
-cors = "127.0.0.1:3000"
+cors = "chrome-extension://*"
 # Only selected APIs will be exposed over this interface.
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 interface = "0.0.0.0"
