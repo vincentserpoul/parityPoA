@@ -11,6 +11,8 @@ curl --data "{\"jsonrpc\":\"2.0\",\"method\":\"parity_newAccountFromPhrase\",\"p
 # kill virgin parity
 kill $(ps ax | grep parity | grep -v grep | awk '{ print $1 }');
 
+sleep 5s
+
 # Replace AUTHORITY_COMPANY by the company in the env variable
 sed -i 's/AUTHORITY_ADDRESS/'$(cat /run/secrets/authority.$AUTHORITY_COMPANY.address)'/' /etc/parityPoA/configPoANode.toml;
 sed -i 's/AUTHORITY_COMPANY/'$AUTHORITY_COMPANY'/' /etc/parityPoA/configPoANode.toml;
