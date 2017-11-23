@@ -22,6 +22,5 @@ sed -i 's/AUTHORITY_COMPANY/'$AUTHORITY_COMPANY'/' /etc/parityPoA/configPoANode.
     --jsonrpc-port=$JSONRPC_PORT \
     --port=$NETWORK_PORT \
     --ws-port=$WEBSOCKETS_PORT \
-    --ntp-servers="pool.ntp.org" \
     --gasprice 0
 
