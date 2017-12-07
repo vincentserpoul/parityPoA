@@ -1,30 +1,30 @@
 version: "3.3"
 
 services:
-  B:
+  C:
     image: vincentserpoul/paritypoa:v1.8.3
     ports:
-      - "8081:8081"
-      - "8181:8181"
-      - "8547:8547"
-      - "8548:8548"
-      - "30304:30304"
+      - "8082:8082"
+      - "8182:8182"
+      - "8549:8549"
+      - "8550:8550"
+      - "30305:30305"
     environment:
-      - UI_PORT=8181
-      - JSONRPC_PORT=8547
-      - WEBSOCKETS_PORT=8548
-      - NETWORK_PORT=30304
-      - AUTHORITY_COMPANY=B
+      - UI_PORT=8182
+      - JSONRPC_PORT=8549
+      - WEBSOCKETS_PORT=8550
+      - NETWORK_PORT=30305
+      - AUTHORITY_COMPANY=C
     volumes:
-      - chain_B:/mnt/io.parity.ethereum
+      - chain_C:/mnt/io.parity.ethereum
     secrets:
-      - authority.B.address
-      - authority.B.passphrase
-      - authority.B.password
+      - authority.C.address
+      - authority.C.passphrase
+      - authority.C.password
     deploy:
       mode: replicated
       replicas: 1
-      labels: [NODE=B]
+      labels: [NODE=C]
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -39,7 +39,7 @@ services:
         max_failure_ratio: 0.3
 
 volumes:
-  chain_B:
+  chain_C:
 
 networks:
   default:
@@ -47,9 +47,9 @@ networks:
       name: poa_default
 
 secrets:
-  authority.B.address:
+  authority.C.address:
     external: true
-  authority.B.passphrase:
+  authority.C.passphrase:
     external: true
-  authority.B.password:
+  authority.C.password:
     external: true

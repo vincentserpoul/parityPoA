@@ -20,6 +20,14 @@ curl -X POST --data '{"method":"parity_newAccountFromPhrase","params":["PoA will
 >> 0x008549c7265000f5c06413c451d529870cf75d35
 ```
 
+Authority C
+
+```bash
+curl -X POST --data '{"method":"parity_newAccountFromPhrase","params":["three nodes are better than two, which is why we do it","1234567890"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" localhost:8545
+
+>> 0x0070bba3fa8700b95025c9dd472c9c4af0ef426d
+```
+
 User1
 
 ```bash
@@ -57,9 +65,10 @@ curl -X POST --data '{"method":"parity_newAccountFromPhrase","params":["PoA user
 ```bash
 docker exec -it $(docker container ls | grep poa_A | awk '{ print $1 }') /parity/parity signer new-token
 docker exec -it $(docker container ls | grep poa_B | awk '{ print $1 }') /parity/parity signer new-token
+docker exec -it $(docker container ls | grep poa_C | awk '{ print $1 }') /parity/parity signer new-token
 ```
 
-Then you can now go to [the first node](http://0.0.0.0:8180) and [the second node](http://0.0.0.0:8181)
+Then you can now go to [the first node](http://0.0.0.0:8180), [the second node](http://0.0.0.0:8181) and [third node](http://0.0.0.0:8182) and enter the supplied token.
 
 ## Connecting the nodes together
 
