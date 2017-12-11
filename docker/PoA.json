@@ -4,7 +4,7 @@
     "authorityRound": {
       "params": {
         "gasLimitBoundDivisor": "0x400",
-        "stepDuration": "10",
+        "stepDuration": "6",
         "validators": {
           "list": [
             "0x0097c0cfe63b641f9fb034f7bd8ecb99f2dabaf3",
@@ -18,7 +18,7 @@
   "params": {
     "gasLimitBoundDivisor": "0x400",
     "maximumExtraDataSize": "0x20",
-    "minGasLimit": "0x5F5E100",
+    "minGasLimit": "0x1388",
     "networkID": "0x2323"
   },
   "genesis": {
@@ -30,7 +30,7 @@
       }
     },
     "difficulty": "0x20000",
-    "gasLimit": "0x5F5E100"
+    "gasLimit": "0x5B8D80"
   },
   "accounts": {
     "0x0000000000000000000000000000000000000001": {

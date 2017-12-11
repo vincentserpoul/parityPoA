@@ -10,6 +10,7 @@ password = ["/run/secrets/authority.AUTHORITY_COMPANY.password"]
 engine_signer = "AUTHORITY_ADDRESS"
 reseal_on_txs = "none"
 usd_per_tx = "0"
+reseal_max_period = 31536000000
 
 [ui]
 force = true
@@ -28,3 +29,6 @@ cors = "chrome-extension://*"
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 interface = "0.0.0.0"
 hosts = ["all"]
+
+[misc]
+logging = "own_tx,sync=debug"
