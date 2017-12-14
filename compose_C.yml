@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   C:
-    image: vincentserpoul/paritypoa:v1.8.3
+    image: vincentserpoul/paritypoa:v1.8.4
     ports:
       - "8082:8082"
       - "8182:8182"
