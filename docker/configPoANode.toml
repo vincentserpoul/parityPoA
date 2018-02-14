@@ -24,7 +24,7 @@ origins = ["127.0.0.1:8180", "127.0.0.1:8181", "localhost:3000", "chrome-extensi
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 
 [rpc]
-cors = "chrome-extension://*"
+cors = ["chrome-extension://*"]
 # Only selected APIs will be exposed over this interface.
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
 interface = "0.0.0.0"
