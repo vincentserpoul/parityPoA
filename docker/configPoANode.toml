@@ -21,7 +21,7 @@ force = true
 interface = "0.0.0.0"
 hosts = ["all"]
 apis = ["all"]
-origins = ["http://127.0.0.1:8180", "http://127.0.0.1:8181", "http://127.0.0.1:8182"]
+origins = ["http://127.0.0.1:8180", "http://127.0.0.1:8181", "http://127.0.0.1:8182", "chrome-extension://himekenlppkgeaoeddcliojfddemadig"]
 
 [rpc]
 interface = "0.0.0.0"
