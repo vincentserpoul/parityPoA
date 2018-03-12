@@ -118,6 +118,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params"
 >> {"jsonrpc":"2.0","result":true,"id":0}
 ```
 
+and if needed, now add the B peer to the C peer:
 Get the B peer details
 
 ```bash
