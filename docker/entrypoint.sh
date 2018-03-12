@@ -23,4 +23,3 @@ sed -i 's/AUTHORITY_COMPANY/'$AUTHORITY_COMPANY'/' /etc/parityPoA/configPoANode.
     --port=$NETWORK_PORT \
     --ws-port=$WS_PORT \
     --gasprice 0
-

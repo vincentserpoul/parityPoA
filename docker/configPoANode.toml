@@ -18,10 +18,10 @@ interface = "0.0.0.0"
 hosts = ["all"]
 
 [websockets]
+apis = ["web3", "eth", "net", "parity", "traces", "rpc", "secretstore"]
 interface = "0.0.0.0"
 hosts = ["all"]
-origins = ["all"]
-apis = ["all"]
+origins = ["http://127.0.0.1:8180", "http://127.0.0.1:8181", "http://127.0.0.1:8182"]
 
 [rpc]
 cors = ["chrome-extension://*"]
