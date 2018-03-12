@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   A:
-    image: vincentserpoul/paritypoa:v1.9.3
+    image: vincentserpoul/paritypoa:v1.9.4
     ports:
       - "8080:8080"
       - "8180:8180"
@@ -12,7 +12,7 @@ services:
     environment:
       - UI_PORT=8180
       - JSONRPC_PORT=8545
-      - WEBSOCKETS_PORT=8546
+      - WS_PORT=8546
       - NETWORK_PORT=30303
       - AUTHORITY_COMPANY=A
     volumes:

@@ -4,5 +4,5 @@ base_path = "/mnt/io.parity.ethereum"
 
 [rpc]
 # Only selected APIs will be exposed over this interface.
-apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
+apis = ["all"]
 interface = "127.0.0.1"

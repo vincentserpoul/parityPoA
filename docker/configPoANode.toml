@@ -20,13 +20,13 @@ hosts = ["all"]
 [websockets]
 interface = "0.0.0.0"
 hosts = ["all"]
-origins = ["127.0.0.1:8180", "127.0.0.1:8181", "localhost:3000", "chrome-extension://*"]
-apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
+origins = ["all"]
+apis = ["all"]
 
 [rpc]
 cors = ["chrome-extension://*"]
 # Only selected APIs will be exposed over this interface.
-apis = ["web3", "eth", "net", "parity", "traces", "rpc", "signer", "personal", "parity_accounts", "parity_set"]
+apis = ["all"]
 interface = "0.0.0.0"
 hosts = ["all"]
 
