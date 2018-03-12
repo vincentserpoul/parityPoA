@@ -77,7 +77,7 @@ get the node A enode id:
 ```bash
 curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST 0.0.0.0:8545
 
->> {"jsonrpc":"2.0","result":"enode://xxxxx@10.255.0.4:30303","id":0}
+>> {"jsonrpc":"2.0","result":"enode://AAAAA@10.255.0.4:30303","id":0}
 ```
 
 BEWARE, the default given IP (here 10.255.0.4) is obviously wrong! These containers speak together directly, so we need the virtual poa_network IP that was given to it.
@@ -85,18 +85,60 @@ BEWARE, the default given IP (here 10.255.0.4) is obviously wrong! These contain
 ```bash
 docker service inspect poa_A -f '{{index .Endpoint.VirtualIPs 1}}'
 
->> {ohifa7fog4gyacne0w88bawaw 10.0.1.2/24}
+>> {ohifa7fog4gyacne0w88bawaw 10.0.0.2/24}
 ```
 
-You need to use the address 10.0.1.2 when you add the peer to the B peer
+You need to use the address 10.0.1.2 when you add the A peer to the B peer
 
 ```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://x@10.0.0.2:30303"],"id":0}' -H "Content-Type: application/json" 0.0.0.0:8547
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://AAAAA@10.0.0.2:30303"],"id":0}' -H "Content-Type: application/json" 0.0.0.0:8547
 
 >> {"jsonrpc":"2.0","result":true,"id":0}
 ```
 
-You should now see the two peers synced (UI or logs)
+now add the C peer to the B peer:
+
+Get the C peer details
+
+```bash
+curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST 0.0.0.0:8549
+
+>> {"jsonrpc":"2.0","result":"enode://CCCCC@10.255.0.4:30305","id":0}
+```
+
+```bash
+docker service inspect poa_C -f '{{index .Endpoint.VirtualIPs 1}}'
+
+>> {ohifa7fog4gyacne0w88bawaw 10.0.0.7/24}
+```
+
+```bash
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://CCCCC@10.0.0.7:30305"],"id":0}' -H "Content-Type: application/json" 0.0.0.0:8547
+
+>> {"jsonrpc":"2.0","result":true,"id":0}
+```
+
+Get the B peer details
+
+```bash
+curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":2}' -H "Content-Type: application/json" -X POST 0.0.0.0:8547
+
+>> {"jsonrpc":"2.0","result":"enode://BBBBB@10.255.0.4:30304","id":0}
+```
+
+```bash
+docker service inspect poa_B -f '{{index .Endpoint.VirtualIPs 1}}'
+
+>> {at6teoejgl6fhk32ig1gu956k 10.0.0.5/24}
+```
+
+```bash
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://BBBBB@10.0.0.5:30304"],"id":0}' -H "Content-Type: application/json" 0.0.0.0:8549
+
+>> {"jsonrpc":"2.0","result":true,"id":0}
+```
+
+You should now see the two peers synced (UI or logs) for peer A.s
 
 ## Authority accounts
 

@@ -13,22 +13,21 @@ usd_per_tx = "0"
 reseal_max_period = 31536000000
 
 [ui]
-force = true
 interface = "0.0.0.0"
 hosts = ["all"]
+force = true
 
 [websockets]
-apis = ["web3", "eth", "net", "parity", "traces", "rpc", "secretstore"]
 interface = "0.0.0.0"
 hosts = ["all"]
+apis = ["all"]
 origins = ["http://127.0.0.1:8180", "http://127.0.0.1:8181", "http://127.0.0.1:8182"]
 
 [rpc]
-cors = ["chrome-extension://*"]
-# Only selected APIs will be exposed over this interface.
-apis = ["all"]
 interface = "0.0.0.0"
 hosts = ["all"]
+cors = ["all"]
+apis = ["all"]
 
 [misc]
 logging = "own_tx,sync=debug"
