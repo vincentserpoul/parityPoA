@@ -1,4 +1,4 @@
-FROM parity/parity:v1.9.4
+FROM parity/parity:v1.10.1
 LABEL maintainer="vincent@serpoul.com"
 
 # Install curl
