@@ -18,8 +18,7 @@ sed -i 's/AUTHORITY_ADDRESS/'$(cat /run/secrets/authority.$AUTHORITY_COMPANY.add
 sed -i 's/AUTHORITY_COMPANY/'$AUTHORITY_COMPANY'/' /etc/parityPoA/configPoANode.toml;
 
 /parity/parity --config /etc/parityPoA/configPoANode.toml \
-    --ui-port=$UI_PORT \
     --jsonrpc-port=$JSONRPC_PORT \
     --port=$NETWORK_PORT \
     --ws-port=$WS_PORT \
-    --gasprice 0
+    --min-gas-price 0

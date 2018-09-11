@@ -2,15 +2,12 @@ version: "3.3"
 
 services:
   B:
-    image: vincentserpoul/paritypoa:v1.10.1
+    image: vincentserpoul/paritypoa:v2.0.3
     ports:
-      - "8081:8081"
-      - "8181:8181"
       - "8547:8547"
       - "8548:8548"
       - "30304:30304"
     environment:
-      - UI_PORT=8181
       - JSONRPC_PORT=8547
       - WS_PORT=8548
       - NETWORK_PORT=30304
@@ -39,7 +36,7 @@ services:
         max_failure_ratio: 0.3
 
 volumes:
-  chain_B:
+  ? chain_B
 
 networks:
   default:

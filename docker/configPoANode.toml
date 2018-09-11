@@ -1,6 +1,7 @@
 [parity]
 chain = "/etc/parityPoA/PoA.json"
 base_path = "/mnt/io.parity.ethereum"
+no_persistent_txqueue = true
 
 [account]
 unlock = ["AUTHORITY_ADDRESS"]
@@ -27,7 +28,7 @@ origins = ["http://127.0.0.1:8180", "http://127.0.0.1:8181", "http://127.0.0.1:8
 interface = "0.0.0.0"
 hosts = ["all"]
 cors = ["all"]
-apis = ["all"]
+apis = ["web3", "eth", "pubsub", "net", "parity", "parity_pubsub","parity_set", "parity_accounts", "rpc", "shh", "shh_pubsub"]
 
 [misc]
 logging = "own_tx,sync=debug"
