@@ -1,4 +1,4 @@
 #!/bin/bash
-# docker pull parity/parity:v2.0.3
+# docker pull parity/parity:v2.2.1
 
-docker build -f ./docker/Dockerfile -t vincentserpoul/paritypoa:v2.0.3 ./docker
+docker build -f ./docker/Dockerfile -t vincentserpoul/paritypoa:v2.2.1 ./docker

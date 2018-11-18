@@ -1,143 +1,25 @@
-# Initial setup
+# Parity PoA demo setup
 
-## Launch one parity node
+## If you don't have any keys and want to generate them automatically \*FOR THE DEMO PURPOSE / ! \ INSECURE / ! \*
 
-## Create your authorities and user
-
-Authority A
+### Generate your keys
 
 ```bash
-curl -X POST --data '{"method":"parity_phraseToAddress","params":["I want to try PoA at home, not secure at all"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" 127.0.0.1:8545
-
->> 0x0097c0cfe63b641f9fb034f7bd8ecb99f2dabaf3
+  for auth in A B C;
+    do docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.1 -c "parity account new --password <(echo '1234567890') && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > authority.$auth.txt;
+  done;
 ```
 
-Authority B
+## Set secrets in docker
 
 ```bash
-curl -X POST --data '{"method":"parity_phraseToAddress","params":["PoA will rule the private blockchain, but this is just a POC, not secure at all"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" 127.0.0.1:8545
+{echo '"';sed -n 1p authority.A.txt;echo '", "';sed -n 1p authority.B.txt;echo '", "';sed -n 1p authority.C.txt;echo '"';} | tr -d '\r\n' | docker secret create validatorsInitSet -;
 
->> 0x008549c7265000f5c06413c451d529870cf75d35
+for auth in A B C;
+do
+  sed -n 1p authority.$auth.txt | docker secret create authority.$auth.address -;
+  sed -n 2p authority.$auth.txt | docker secret create authority.$auth.priv.json -;
+  rm -f authority.$auth.txt;
+  echo "1234567890" | docker secret create authority.$auth.password -;
+done;
 ```
-
-Authority C
-
-```bash
-curl -X POST --data '{"method":"parity_phraseToAddress","params":["three nodes are better than two, which is why we do it"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" 127.0.0.1:8545
-
->> 0x0070bba3fa8700b95025c9dd472c9c4af0ef426d
-```
-
-User1
-
-```bash
-curl -X POST --data '{"method":"parity_phraseToAddress","params":["PoA user, first of all, with a lot of eth"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" 127.0.0.1:8545
-
->> 0x009b98e786952f3ace412961b6008a34b059ff74
-```
-
-Update the authority keys in ./dockerimage/PoA.json engine.authorityRound.params.List if you decide to change them.
-Update the accounts in ./dockerimage/PoA.json if you decide to change it.
-
-## Create image
-
-```bash
-cd dockerimage
-./build_docker_image.sh
-```
-
-## Launch the stack
-
-```bash
-./launch_docker_stack.sh
-```
-
-Add the user1:
-
-```bash
-curl -X POST --data '{"method":"parity_newAccountFromPhrase","params":["PoA user, first of all, with a lot of eth","1234567890"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" 127.0.0.1:8545
-
->> 0x009b98e786952f3ace412961b6008a34b059ff74
-```
-
-## Connecting the nodes together
-
-get the node A enode id:
-
-```bash
-curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST 127.0.0.1:8545
-
->> {"jsonrpc":"2.0","result":"enode://AAAAA@10.255.0.4:30303","id":0}
-```
-
-BEWARE, the default given IP (here 10.255.0.4) is obviously wrong! These containers speak together directly, so we need the virtual poa_network IP that was given to it.
-
-```bash
-docker service inspect poa_A -f '{{index .Endpoint.VirtualIPs 1}}'
-
->> {ohifa7fog4gyacne0w88bawaw 10.0.0.2/24}
-```
-
-You need to use the address 10.0.1.2 when you add the A peer to the B peer
-
-```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://AAAAA@10.0.0.2:30303"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8547
-
->> {"jsonrpc":"2.0","result":true,"id":0}
-```
-
-now add the C peer to the B peer:
-
-Get the C peer details
-
-```bash
-curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST 127.0.0.1:8549
-
->> {"jsonrpc":"2.0","result":"enode://CCCCC@10.255.0.4:30305","id":0}
-```
-
-```bash
-docker service inspect poa_C -f '{{index .Endpoint.VirtualIPs 1}}'
-
->> {ohifa7fog4gyacne0w88bawaw 10.0.0.7/24}
-```
-
-```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://CCCCC@10.0.0.7:30305"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8547
-
->> {"jsonrpc":"2.0","result":true,"id":0}
-```
-
-and if needed, now add the B peer to the C peer:
-Get the B peer details
-
-```bash
-curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":2}' -H "Content-Type: application/json" -X POST 127.0.0.1:8547
-
->> {"jsonrpc":"2.0","result":"enode://BBBBB@10.255.0.4:30304","id":0}
-```
-
-```bash
-docker service inspect poa_B -f '{{index .Endpoint.VirtualIPs 1}}'
-
->> {at6teoejgl6fhk32ig1gu956k 10.0.0.5/24}
-```
-
-```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://BBBBB@10.0.0.5:30304"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8549
-
->> {"jsonrpc":"2.0","result":true,"id":0}
-```
-
-You should now see the two peers synced (UI or logs) for peer A.s
-
-## Authority accounts
-
-The accounts are easy to remember as created from passphrase + password.
-They are securely stored using docker secrets.
-
-## TODO
-
-[] recover from command line
-[] test adding user account later
-[] test adding authority later

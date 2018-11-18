@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   A:
-    image: vincentserpoul/paritypoa:v2.0.3
+    image: vincentserpoul/paritypoa:v2.2.1
     ports:
       - "8545:8545"
       - "8546:8546"
@@ -11,13 +11,25 @@ services:
       - JSONRPC_PORT=8545
       - WS_PORT=8546
       - NETWORK_PORT=30303
-      - AUTHORITY_COMPANY=A
     volumes:
-      - chain_A:/mnt/io.parity.ethereum
+      - chain_A:/home/parity/.local/share/io.parity.ethereum
     secrets:
-      - authority.A.address
-      - authority.A.passphrase
-      - authority.A.password
+      - source: authority.A.priv.json
+        target: /run/secrets/authority.priv.json
+        uid: "1000"
+        gid: "1000"
+      - source: authority.A.address
+        target: /run/secrets/authority.address
+        uid: "1000"
+        gid: "1000"
+      - source: authority.A.password
+        target: /run/secrets/authority.password
+        uid: "1000"
+        gid: "1000"
+      - source: validatorsInitSet
+        target: /run/secrets/validatorsInitSet
+        uid: "1000"
+        gid: "1000"
     deploy:
       mode: replicated
       replicas: 1
@@ -36,12 +48,16 @@ services:
         max_failure_ratio: 0.3
 
 volumes:
-  ? chain_A
+  chain_A:
+    driver_opts:
+      o: uid=1000,gid=1000
 
 secrets:
+  authority.A.priv.json:
+    external: true
   authority.A.address:
     external: true
-  authority.A.passphrase:
-    external: true
   authority.A.password:
+    external: true
+  validatorsInitSet:
     external: true

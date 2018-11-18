@@ -1,11 +1,10 @@
 [parity]
-chain = "/etc/parityPoA/PoA.json"
-base_path = "/mnt/io.parity.ethereum"
+chain = "/home/parity/PoA.json"
 no_persistent_txqueue = true
 
 [account]
 unlock = ["AUTHORITY_ADDRESS"]
-password = ["/run/secrets/authority.AUTHORITY_COMPANY.password"]
+password = ["/run/secrets/authority.password"]
 
 [mining]
 engine_signer = "AUTHORITY_ADDRESS"

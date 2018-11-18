@@ -1,8 +1,0 @@
-[parity]
-chain = "/etc/parityPoA/PoA.json"
-base_path = "/mnt/io.parity.ethereum"
-
-[rpc]
-# Only selected APIs will be exposed over this interface.
-apis = ["all"]
-interface = "127.0.0.1"

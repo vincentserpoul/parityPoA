@@ -1,21 +1,10 @@
-FROM parity/parity:v2.0.3
+FROM parity/parity:v2.2.1
 LABEL maintainer="vincent@serpoul.com"
 
-# Install curl
-RUN apt-get update && apt-get install curl -y
+VOLUME ["/home/parity/.local/share/io.parity.ethereum"]
 
-# Change the db path
-RUN mkdir -p /mnt/io.parity.ethereum
+ADD ./configPoANode.toml /home/parity/configPoANode.toml
+ADD ./PoA.json /home/parity/PoA.json
+ADD ./entrypoint.sh /home/parity/entrypoint.sh
 
-VOLUME ["/mnt/io.parity.ethereum"]
-
-RUN mkdir -p /etc/parityPoA
-ADD ./configPoAInit.toml /etc/parityPoA/configPoAInit.toml
-ADD ./configPoANode.toml /etc/parityPoA/configPoANode.toml
-ADD ./PoA.json /etc/parityPoA/PoA.json
-ADD ./entrypoint.sh /entrypoint.sh
-
-# For the signer
-RUN mkdir -p ~/.local/share/io.parity.ethereum/signer
-
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/home/parity/entrypoint.sh"]
