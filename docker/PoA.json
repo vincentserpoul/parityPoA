@@ -6,7 +6,14 @@
         "gasLimitBoundDivisor": "0x400",
         "stepDuration": "6",
         "validators": {
-          "list": ["validatorsInitSet"]
+          "multi": {
+            "0": {
+              "list": ["validatorsInitSet"]
+            },
+            "100": {
+              "contract": "0x0000000000000000000000000000000000000005"
+            }
+          }
         }
       }
     }
@@ -75,6 +82,10 @@
           }
         }
       }
+    },
+    "0x0000000000000000000000000000000000000005": {
+      "balance": "1",
+      "constructor": ""
     }
   }
 }
