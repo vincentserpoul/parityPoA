@@ -16,20 +16,12 @@ services:
     secrets:
       - source: authority.B.priv.json
         target: /run/secrets/authority.priv.json
-        uid: "1000"
-        gid: "1000"
       - source: authority.B.address
         target: /run/secrets/authority.address
-        uid: "1000"
-        gid: "1000"
       - source: authority.B.password
         target: /run/secrets/authority.password
-        uid: "1000"
-        gid: "1000"
       - source: validatorsInitSet
         target: /run/secrets/validatorsInitSet
-        uid: "1000"
-        gid: "1000"
     deploy:
       mode: replicated
       replicas: 1
