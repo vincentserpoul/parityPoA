@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   A:
-    image: vincentserpoul/paritypoa:v2.2.1
+    image: vincentserpoul/paritypoa:v2.2.2
     ports:
       - "8545:8545"
       - "8546:8546"

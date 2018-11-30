@@ -6,7 +6,7 @@
 
 ```bash
   for auth in A B C;
-    do docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.1 -c "parity account new --password <(echo '1234567890') && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > authority.$auth.txt;
+    do docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.2 -c "parity account new --password <(echo '1234567890') && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > authority.$auth.txt;
   done;
 ```
 
@@ -36,18 +36,8 @@ curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "C
 >> {"jsonrpc":"2.0","result":"enode://AAAAA@10.255.0.4:30303","id":0}
 ```
 
-BEWARE, the default given IP (here 10.255.0.4) is obviously wrong! These containers speak together directly, so we need the virtual poa_network IP that was given to it.
-
 ```bash
-docker service inspect poa_A -f '{{index .Endpoint.VirtualIPs 1}}'
-
->> {ohifa7fog4gyacne0w88bawaw 10.0.0.2/24}
-```
-
-You need to use the address 10.0.1.2 when you add the A peer to the B peer
-
-```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://AAAAA@10.0.0.2:30303"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8547
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://AAAAA@poa_A:30303"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8547
 
 >> {"jsonrpc":"2.0","result":true,"id":0}
 ```
@@ -63,13 +53,7 @@ curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "C
 ```
 
 ```bash
-docker service inspect poa_C -f '{{index .Endpoint.VirtualIPs 1}}'
-
->> {ohifa7fog4gyacne0w88bawaw 10.0.0.7/24}
-```
-
-```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://CCCCC@10.0.0.7:30305"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8547
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://CCCCC@poa_C:30305"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8547
 
 >> {"jsonrpc":"2.0","result":true,"id":0}
 ```
@@ -84,13 +68,7 @@ curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":2}' -H "C
 ```
 
 ```bash
-docker service inspect poa_B -f '{{index .Endpoint.VirtualIPs 1}}'
-
->> {at6teoejgl6fhk32ig1gu956k 10.0.0.5/24}
-```
-
-```bash
-curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://BBBBB@10.0.0.5:30304"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8549
+curl -X POST --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://BBBBB@poa_B:30304"],"id":0}' -H "Content-Type: application/json" 127.0.0.1:8549
 
 >> {"jsonrpc":"2.0","result":true,"id":0}
 ```
