@@ -1,6 +1,6 @@
 # Parity PoA demo setup
 
-## If you don't have any keys and want to generate them automatically \*FOR THE DEMO PURPOSE / ! \ INSECURE / ! \*
+## If you don't have any keys and want to generate them automatically \* FOR THE DEMO PURPOSE / ! \ INSECURE / ! \ \*
 
 ### Generate your keys
 
