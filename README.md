@@ -23,7 +23,7 @@ if you re using kubernetes, see ./kubernetes.README.md.
 ## Cleaning up and removing sensitive fles
 
 ```bash
-  ./cleanup.sh
+  rm -rf ./.generated
 ```
 
 ## Connecting the nodes together
