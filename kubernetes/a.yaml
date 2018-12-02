@@ -42,7 +42,6 @@ spec:
     spec:
       containers:
         - image: "vincentserpoul/paritypoa:v2.2.2"
-          imagePullPolicy: Always
           name: ethereumnode-poa-a
           env:
             - name: JSONRPC_PORT
