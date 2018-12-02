@@ -1,9 +1,5 @@
 #!/bin/bash
 
-###################################
-# / ! \ THIS IS FOR EASY POC ONLY #
-###################################
-
 # Launch the node for A
 docker stack deploy --compose-file ./compose_A.yml poa;
 

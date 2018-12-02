@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.7"
 
 services:
   C:
@@ -13,14 +13,25 @@ services:
       - NETWORK_PORT=30305
     volumes:
       - chain_C:/home/parity/.local/share/io.parity.ethereum
-    secrets:
-      - source: authority.C.priv.json
-        target: /run/secrets/authority.priv.json
+    configs:
+      - source: PoA.json
+        target: /home/parity/PoA.json
+        uid: "1000"
+        gid: "1000"
+        mode: 0400
+      - source: configPoANode.C.toml
+        target: /home/parity/configPoANode.toml
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: authority.C.address
-        target: /run/secrets/authority.address
+        target: /home/parity/authority.address
+        uid: "1000"
+        gid: "1000"
+        mode: 0400
+    secrets:
+      - source: authority.C.priv.json
+        target: /run/secrets/authority.priv.json
         uid: "1000"
         gid: "1000"
         mode: 0400
@@ -29,15 +40,10 @@ services:
         uid: "1000"
         gid: "1000"
         mode: 0400
-      - source: validatorsInitSet
-        target: /run/secrets/validatorsInitSet
-        uid: "1000"
-        gid: "1000"
-        mode: 0400
     deploy:
       mode: replicated
       replicas: 1
-      labels: [NODE=C]
+      labels: [NODE=A]
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -56,17 +62,16 @@ volumes:
     driver_opts:
       o: rw
 
-networks:
-  default:
-    external:
-      name: poa_default
+configs:
+  PoA.json:
+    external: true
+  configPoANode.C.toml:
+    external: true
+  authority.C.address:
+    external: true
 
 secrets:
   authority.C.priv.json:
     external: true
-  authority.C.address:
-    external: true
   authority.C.password:
-    external: true
-  validatorsInitSet:
     external: true

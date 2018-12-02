@@ -1,29 +1,29 @@
 # Parity PoA demo setup
 
-## If you don't have any keys and want to generate them automatically \* FOR THE DEMO PURPOSE / ! \ INSECURE / ! \ \*
-
-### Generate your keys
+## Build the docker image
 
 ```bash
-  for auth in A B C;
-    do docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.2 -c "parity account new --password <(echo '1234567890') && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > authority.$auth.txt;
-  done;
+  ./build_docker_image.sh
 ```
 
-### Set secrets in docker
+## Generate the accounts and configs
+
+/ ! \ CHANGE PASSA PASSB and PASSC / ! \
 
 ```bash
-docker secret rm validatorsInitSet;
-{echo '"';sed -n 1p authority.A.txt;echo '", "';sed -n 1p authority.B.txt;echo '", "';sed -n 1p authority.C.txt;echo '"';} | tr -d '\r\n' | docker secret create validatorsInitSet -;
+  ./generate PASSA PASSB PASSC
+```
 
-for auth in A B C;
-do
-  docker secret rm authority.$auth.address authority.$auth.priv.json authority.$auth.password;
-  sed -n 1p authority.$auth.txt | tr -d '\r\n' | docker secret create authority.$auth.address -;
-  sed -n 2p authority.$auth.txt | docker secret create authority.$auth.priv.json -;
-  rm -f authority.$auth.txt;
-  echo "1234567890" | docker secret create authority.$auth.password -;
-done;
+## Launching nodes
+
+if you are using docker swarm, See ./docker-swarm/README.md.
+
+if you re using kubernetes, see ./kubernetes.README.md.
+
+## Cleaning up and removing sensitive fles
+
+```bash
+  ./cleanup.sh
 ```
 
 ## Connecting the nodes together

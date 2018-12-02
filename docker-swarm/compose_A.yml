@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.7"
 
 services:
   A:
@@ -13,24 +13,30 @@ services:
       - NETWORK_PORT=30303
     volumes:
       - chain_A:/home/parity/.local/share/io.parity.ethereum
+    configs:
+      - source: PoA.json
+        target: /home/parity/PoA.json
+        uid: "1000"
+        gid: "1000"
+        mode: 0400
+      - source: configPoANode.A.toml
+        target: /home/parity/configPoANode.toml
+        uid: "1000"
+        gid: "1000"
+        mode: 0400
+      - source: authority.A.address
+        target: /home/parity/authority.address
+        uid: "1000"
+        gid: "1000"
+        mode: 0400
     secrets:
       - source: authority.A.priv.json
         target: /run/secrets/authority.priv.json
         uid: "1000"
         gid: "1000"
         mode: 0400
-      - source: authority.A.address
-        target: /run/secrets/authority.address
-        uid: "1000"
-        gid: "1000"
-        mode: 0400
       - source: authority.A.password
         target: /run/secrets/authority.password
-        uid: "1000"
-        gid: "1000"
-        mode: 0400
-      - source: validatorsInitSet
-        target: /run/secrets/validatorsInitSet
         uid: "1000"
         gid: "1000"
         mode: 0400
@@ -56,12 +62,16 @@ volumes:
     driver_opts:
       o: rw
 
-secrets:
-  authority.A.priv.json:
+configs:
+  PoA.json:
+    external: true
+  configPoANode.A.toml:
     external: true
   authority.A.address:
     external: true
-  authority.A.password:
+
+secrets:
+  authority.A.priv.json:
     external: true
-  validatorsInitSet:
+  authority.A.password:
     external: true

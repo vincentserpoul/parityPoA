@@ -7,8 +7,6 @@ USER root
 
 VOLUME ["/home/parity/.local/share/io.parity.ethereum"]
 
-COPY ./configPoANode.toml /home/parity/configPoANode.toml
-COPY ./PoA.json /home/parity/PoA.json
 COPY ./entrypoint.sh /home/parity/entrypoint.sh
 
 ENTRYPOINT ["/home/parity/entrypoint.sh"]
