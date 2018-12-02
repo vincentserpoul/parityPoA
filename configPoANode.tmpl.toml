@@ -1,10 +1,10 @@
 [parity]
-chain = "/home/parity/PoA.json"
+chain = "/home/parity/.poaconfigs/PoA.json"
 no_persistent_txqueue = true
 
 [account]
 unlock = ["AUTHORITY_ADDRESS"]
-password = ["/run/secrets/authority.password"]
+password = ["/home/parity/.poasecrets/authority.password"]
 
 [mining]
 engine_signer = "AUTHORITY_ADDRESS"

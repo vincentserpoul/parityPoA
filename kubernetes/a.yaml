@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ethereumnode-poa-a
+  namespace: poa
+spec:
+  type: NodePort
+  ports:
+    - port: 8645
+      targetPort: 8545
+      protocol: TCP
+      name: jsonrpc
+    - port: 8646
+      targetPort: 8546
+      protocol: TCP
+      name: ws
+    - port: 31303
+      targetPort: 30303
+      protocol: TCP
+      name: network
+    - port: 31303
+      targetPort: 30303
+      protocol: UDP
+      name: networksync
+  selector:
+    app: ethereumnode-poa-a
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ethereumnode-poa-a
+  namespace: poa
+spec:
+  replicas: 1
+  # securityContext:
+  #   runAsUser: 1000
+  #   fsGroup: 1000
+  template:
+    metadata:
+      labels:
+        app: ethereumnode-poa-a
+    spec:
+      containers:
+        - image: "vincentserpoul/paritypoa:v2.2.2"
+          imagePullPolicy: Always
+          name: ethereumnode-poa-a
+          env:
+            - name: JSONRPC_PORT
+              value: "8545"
+            - name: WS_PORT
+              value: "8546"
+            - name: NETWORK_PORT
+              value: "30303"
+          ports:
+            - containerPort: 8545
+              name: jsonrpc
+            - containerPort: 8546
+              name: ws
+            - containerPort: 30303
+              name: network
+          volumeMounts:
+            - name: ethblockchain-a
+              mountPath: "/home/parity/.local/share/io.parity.ethereum"
+            - name: poaconfigs
+              mountPath: /home/parity/.poaconfigs
+            - name: poasecrets
+              mountPath: /home/parity/.poasecrets
+      volumes:
+        - name: ethblockchain-a
+          emptyDir: null
+        - name: poaconfigs
+          configMap:
+            name: poaconfigs-a
+        - name: poasecrets
+          secret:
+            secretName: poasecrets-a
+# kubectl apply -f ./kubernetes/a.yaml

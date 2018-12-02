@@ -15,35 +15,35 @@ services:
       - chain_B:/home/parity/.local/share/io.parity.ethereum
     configs:
       - source: PoA.json
-        target: /home/parity/PoA.json
+        target: /home/parity/.poaconfigs/PoA.json
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: configPoANode.B.toml
-        target: /home/parity/configPoANode.toml
+        target: /home/parity/.poaconfigs/configPoANode.toml
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: authority.B.address
-        target: /home/parity/authority.address
+        target: /home/parity/.poaconfigs/authority.address
         uid: "1000"
         gid: "1000"
         mode: 0400
     secrets:
       - source: authority.B.priv.json
-        target: /run/secrets/authority.priv.json
+        target: /home/parity/.poasecrets/authority.priv.json
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: authority.B.password
-        target: /run/secrets/authority.password
+        target: /home/parity/.poasecrets/authority.password
         uid: "1000"
         gid: "1000"
         mode: 0400
     deploy:
       mode: replicated
       replicas: 1
-      labels: [NODE=A]
+      labels: [NODE=B]
       restart_policy:
         condition: on-failure
         delay: 5s

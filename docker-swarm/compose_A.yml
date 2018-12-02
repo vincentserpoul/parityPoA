@@ -15,28 +15,28 @@ services:
       - chain_A:/home/parity/.local/share/io.parity.ethereum
     configs:
       - source: PoA.json
-        target: /home/parity/PoA.json
+        target: /home/parity/.poaconfigs/PoA.json
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: configPoANode.A.toml
-        target: /home/parity/configPoANode.toml
+        target: /home/parity/.poaconfigs/configPoANode.toml
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: authority.A.address
-        target: /home/parity/authority.address
+        target: /home/parity/.poaconfigs/authority.address
         uid: "1000"
         gid: "1000"
         mode: 0400
     secrets:
       - source: authority.A.priv.json
-        target: /run/secrets/authority.priv.json
+        target: /home/parity/.poasecrets/authority.priv.json
         uid: "1000"
         gid: "1000"
         mode: 0400
       - source: authority.A.password
-        target: /run/secrets/authority.password
+        target: /home/parity/.poasecrets/authority.password
         uid: "1000"
         gid: "1000"
         mode: 0400
