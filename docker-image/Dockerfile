@@ -1,4 +1,4 @@
-FROM parity/parity:v2.2.2
+FROM parity/parity:stable
 LABEL maintainer="vincent@serpoul.com"
 
 # SAD but It seems impossible to read the mount otherwise
