@@ -19,9 +19,9 @@ echo $PASSWORDB > ./.generated/authority.B.password;
 echo $PASSWORDC > ./.generated/authority.C.password;
 
 # Generate the accounts
-docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.2 -c "parity account new --password <(echo $PASSWORDA) && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > ./.generated/authority.A.txt;
-docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.2 -c "parity account new --password <(echo $PASSWORDB) && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > ./.generated/authority.B.txt;
-docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.2.2 -c "parity account new --password <(echo $PASSWORDC) && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > ./.generated/authority.C.txt;
+docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.5.0 -c "parity account new --password <(echo $PASSWORDA) && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > ./.generated/authority.A.txt;
+docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.5.0 -c "parity account new --password <(echo $PASSWORDB) && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > ./.generated/authority.B.txt;
+docker run -it --rm --name paritygenkeys --entrypoint /bin/bash parity/parity:v2.5.0 -c "parity account new --password <(echo $PASSWORDC) && cat ~/.local/share/io.parity.ethereum/keys/ethereum/*" > ./.generated/authority.C.txt;
 
 # Update the config according to the accounts;
 for auth in A B C;
