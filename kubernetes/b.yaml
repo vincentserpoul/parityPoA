@@ -41,7 +41,7 @@ spec:
         app: ethereumnode-poa-b
     spec:
       containers:
-        - image: "vincentserpoul/paritypoa:v2.2.2"
+        - image: "vincentserpoul/paritypoa:v2.5.0"
           name: ethereumnode-poa-b
           env:
             - name: JSONRPC_PORT
