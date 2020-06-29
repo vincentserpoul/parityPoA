@@ -1,3 +1,6 @@
+*THIS REPO IS USING OLD TOOLS AND SHOULD BE CONSIDERED DEPRECATED.*
+If you are interested in ethereum PoA or prviate setup, you should look at the go-ethereum project.
+
 # Parity PoA setup
 
 ## Build the docker image
